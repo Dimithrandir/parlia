@@ -1,0 +1,204 @@
+body {
+	margin: 0;
+	background: #f2f2f2;
+	font-family: sans-serif;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	margin: 10px 20px 0 20px;
+}
+
+header > span {
+	margin-right: auto;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+
+.svg-container {
+	display: flex;
+	flex-direction: column;
+	width: 45%;
+	min-width: 500px;
+	margin: 10px;
+}
+
+svg {
+	display: block;
+	margin: auto;
+	width: 100%;
+	aspect-ratio: 16/10;
+	border: 1px solid #ccc;
+}
+
+svg circle {
+	cursor: pointer;
+	transition: .1s;
+}
+
+svg rect {
+	transition: .1s;
+}
+
+svg text {
+	text-anchor: middle;
+	font-family: sans-serif;
+}
+
+.controls-container {
+	display: flex;
+    justify-content: center;
+	align-items: flex-start;
+	width: 50%;
+	min-width: 300px;
+	margin: 10px;
+}
+
+.parties-container {
+    display: flex;
+	flex-direction: column;
+	width: 55%;
+}
+
+.form-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+}
+
+.settings-container {
+    display: flex;
+	flex-direction: column;
+	width: 45%;
+}
+
+label {
+	display: block;
+	align-content: center;
+	margin: 6px 6px 0 6px;
+	font-weight: bold;
+}
+
+input + label {
+	font-weight: normal;
+}
+
+input, output {
+	display: inline-block;
+	padding: 6px;
+	margin: 6px 0 0 6px;
+	box-sizing: border-box;
+
+	border: 1px solid #ccc;
+	border-radius: 6px;
+}
+
+input[type="color"] {
+	width: 15%;
+	min-width: 40px;
+	max-width: 60px;
+	cursor: pointer;
+}
+
+input[type="text"] {
+	width: 60%;
+}
+
+input[type="number"] {
+	min-width: 60px;
+	width: 15%;
+}
+
+input[type="button"] {
+	width: 10%;
+	max-width: 50px;
+	cursor: pointer;
+	margin-right: 6px;
+}
+
+input[type="range"] {
+	width: 80%;
+	cursor: pointer;
+}
+
+input[type="file"] {
+	margin-right: 6px;
+}
+
+input[type="radio"], input[type="file"] {
+	cursor: pointer;
+}
+
+output {
+	width: 20%;
+	background: #fff;
+	text-align: center;
+	cursor: help;
+	margin-right: 6px;
+}
+
+button {
+	padding: 6px;
+	margin: 6px 6px 0 6px;
+	cursor: pointer;
+}
+
+.label-file-error {
+	display: none;
+	margin: 6px 6px 0 6px;
+	color: maroon;
+	font-size: small;
+}
+
+.radio-group {
+	display: block;
+	width: 50%;
+}
+
+.radio-group > label {
+	display: inline;
+	cursor: pointer;
+}
+
+.checkbox {
+	display: inline-flex;
+	width: 50%;
+}
+
+.checkbox > input, .checkbox > label{
+	cursor: pointer;
+}
+
+.input-background {
+	margin-right: 6px;
+}
+
+.status-box {
+	margin: auto;
+	padding: 10px;
+	font-size: small;
+	text-align: center;
+}
+
+.status-box > span {
+	font-weight: bold;
+}
+
+footer {
+	font-size: small;
+	align-content: center;
+	text-align: center;
+	margin: 20px;
+}
+
+footer > hr {
+	width: 50%;
+	color: #ccc;
+}

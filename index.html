@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<script src="parlia.js" defer></script>  
+	<script src="script.js" defer></script>  
+	<title>parlia - parliament builder</title>
+</head>
+<body>
+	<header>
+		<img src="logo.svg" height="30px" alt="parlia"/>
+		<span>&nbsp;- parliament builder</span>
+	</header>
+	<div class="main-container">
+		<div class="svg-container">
+			<svg id="svg" xmlns="http://www.w3.org/2000/svg">
+				Sorry, your browser does not support inline SVG.
+			</svg>
+			<div class="status-box">
+				SVG size: <span id="labelSvgSize"></span> • Total seats: <span id="labelSeats"></span> • Drawn seats: <span id="labelSeatsDrawn"></span> • Selected seats: <span id="labelSeatsSelected"></span> • Selected percentage: <span id="labelSeatsPercent"></span>
+			</div>
+		</div>
+		<div class="controls-container">
+			<div class="parties-container">
+				<label>Parties:</label>
+				<div id="parties">
+					<!--parties go in here-->
+				</div>
+				<button id="buttonAddParty">Add party</button>
+				<label>Load from csv:</label>
+				<input id="buttonLoadFile" type="file" accept=".csv"/>
+				<span id="labelFileError" class="label-file-error">...</span>
+				<button id="buttonExportCsv">Export parties to csv</button>
+			</div>
+			<div class="settings-container">
+				<label>Thickness:</label>
+				<div class="form-row">
+					<input id="sliderRadius" type="range" min="40" max="100" value="50" class="slider"/>
+					<output id="labelRadius" title="Adjust the thickness of the parliament by changing the ratio between the width and inner radius of the parliament. A value of 5 means the inner radius of the parliament is 1/5 of its width. Bigger value means bigger parliament.">5</output>
+				</div>
+				<label>Seat size:</label>
+				<div class="form-row">
+					<input id="sliderRatio" type="range" min="20" max="40" value="25" class="slider"/>
+					<output id="labelRatio" title="Adjust the seat size by changing the ratio between the side of a square with area equal to each seat's share of the parliament and the radius of the actual seat. A value of 2.5 means the ratio of the square and radius is 1/2.5. Smaller value means bigger seats.">2.5</output>
+				</div>
+				<label>Order:</label>
+				<div class="form-row">
+					<div id="radioSort" class="radio-group">
+						<input type="radio" id="radioSortDefault" name="radioGroupSort" value=0 checked/>
+						<label for="radioSortDefault">Default</label>
+						<br/>
+						<input type="radio" id="radioSortSeats" name="radioGroupSort" value=1 />
+						<label for="radioSortSeats">Seats</label>
+						<br/>
+						<input type="radio" id="radioSortName" name="radioGroupSort" value=2 />
+						<label for="radioSortName">Name</label>
+					</div>
+					<div id="radioOrder" class="radio-group">
+						<input type="radio" id="radioOrderAscending" name="radioGroupOrder" value=0 checked/>
+						<label for="radioOrderAscending">Ascending</label>
+						<br/>
+						<input type="radio" id="radioOrderDescending" name="radioGroupOrder" value=1 />
+						<label for="radioOrderDescending">Descending</label>
+						<br/>
+						<input type="radio" id="radioOrderAlternating" name="radioGroupOrder" value=2 />
+						<label for="radioOrderAlternating">Alternating</label>
+					</div>
+				</div>
+				<label>Style:</label>
+				<div class="form-row">
+					<div class="checkbox">
+						<input type="checkbox" id="checkBorder" name="checkBorder"/>
+						<label for="checkBorder">Border</label>
+					</div>
+					<div class="checkbox">
+						<input type="checkbox" id="checkShadow" name="checkShadow"/>
+						<label for="checkShadow">Shadow</label>
+					</div>
+				</div>
+				<div class="form-row">
+					<label>Background color:</label>
+					<input type="color" id="inputBackground" class="input-background" value="#dddddd"/>
+				</div>
+				<button id="buttonDefaults">Defaults</button>
+				<button id="buttonDownload">Download as svg</button>
+				<button id="buttonCopy">Copy svg source</button>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<hr/>
+		<a href="">source code</a> | <a href="">report a bug</a>
+	</footer>
+</body>
+</html>
