@@ -272,15 +272,10 @@ function redraw() {
 	// status label update
 	let svgRect = svg.getBoundingClientRect();
 	document.getElementById("labelSvgSize").innerHTML = parseInt(svgRect.width) + " x " + parseInt(svgRect.height);
-	labelSeats.innerHTML = result[0];
-	labelSeatsDrawn.innerHTML = result[1];
-	labelSeatsSelected.innerHTML = result[1];
+	labelSeats.innerHTML = result.seatsTotal;
+	labelSeatsDrawn.innerHTML = result.seatsDrawn;
+	labelSeatsSelected.innerHTML = result.seatsDrawn;
 	labelSeatsPercent.innerHTML = "100%";
-
-	// ERROR if can't fit all the seats
-	if (result[0] != result[1]) {
-		Parlia.drawError(svg);
-	}
 }
 
 
