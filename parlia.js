@@ -1,5 +1,5 @@
 // Parlia
-// 0.0.1
+// 0.1.0
 
 
 (function (root, factory) {
@@ -7,11 +7,14 @@
 	if (typeof define === "function" && define.amd) {
 		define(factory);
 	}
+	else if (typeof module === "object" && module.exports) {
+        module.exports = factory();
+	}
 	else {
 		root.Parlia = factory();
 	}
 
-}(typeof self !== 'undefined' ? self : this, function () {
+}(typeof self !== "undefined" ? self : this, function () {
 	
 	"use strict";
 
@@ -296,7 +299,13 @@
 		drawRect(backRect, svg, background);
 
 
-		return [nSeats, seatCounter];
+		// draw error caption if can't fit all the seats
+		if (nSeats != seatCounter) {
+			drawError(svg, "CAN'T FIT ALL SEATS", "Try reducing the seat size");
+		}
+
+
+		return {seatsTotal: nSeats, seatsDrawn: seatCounter};
 	}
 
 
@@ -352,7 +361,7 @@
 		}
 	}
 
-	function drawError(svg) {
+	function drawError(svg, title, subtitle) {
 		let svgRect = svg.getBoundingClientRect();
 
 		let rect = document.createElementNS(SVGNS, "rect");
@@ -371,7 +380,7 @@
 		text1.setAttribute("font-size", "25");
 		text1.style.textAnchor = "middle";
 		text1.style.fontFamily = "sans-serif";
-		text1.innerHTML = "CAN'T FIT ALL SEATS";
+		text1.innerHTML = title;
 
 		let text2 = document.createElementNS(SVGNS, "text");
 		text2.setAttribute("x", svgRect.width / 2);
@@ -380,7 +389,7 @@
 		text2.setAttribute("font-size", "18");
 		text2.style.textAnchor = "middle";
 		text2.style.fontFamily = "sans-serif";
-		text2.innerHTML = "Try reducing the seat size";
+		text2.innerHTML = subtitle;
 
 		svg.appendChild(rect);
 		svg.appendChild(text1);
