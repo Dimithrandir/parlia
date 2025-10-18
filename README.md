@@ -50,9 +50,9 @@ id,color,name,seats
 
 ## Documentation
 
-### Public methods
+### Public methods:
 
-* drawParliament()
+### drawParliament()
 
 Main function, does all the calculations for the given arguments and draws the parliament in the given SVG DOM object.
 
@@ -99,7 +99,7 @@ An object with two properties:
 
 `seatsDrawn` - Total number of seats drawn in the parliament.
 
-* .drawError()
+### .drawError()
 
 Draw a caption with an error message over the parliament. Called when the arguments of drawParliament() don't allow all the seat to be drawn.
 
@@ -111,7 +111,7 @@ Draw a caption with an error message over the parliament. Called when the argume
 
 `subtitle` - Subtitle of the caption. 
 
-* downloadParliament()
+### downloadParliament()
 
 Download the generated SVG.
 
@@ -119,7 +119,7 @@ Download the generated SVG.
 
 `svg` - Reference to the SVG DOM object where the parliament is drawn.
 
-* parseFromCsv()
+### parseFromCsv()
 
 Reads from a CSV file and parses to the preferred data format. Throws exceptions if the data is not in the correct format.
 
@@ -127,7 +127,7 @@ Reads from a CSV file and parses to the preferred data format. Throws exceptions
 
 `file` - A File object.
 
-* parseToCsv()
+### parseToCsv()
 
 Write the parties to a CSV file.
 
@@ -137,6 +137,6 @@ Write the parties to a CSV file.
 
 ### Public properties:
 
-* selectedParties
+### selectedParties
 
 A Set of class names for the parties that are currently selected. Selected parties' seats have full opacity. Empty list means everything is selected (default).
