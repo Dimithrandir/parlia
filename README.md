@@ -4,7 +4,7 @@ Parlia is a browser-based javascript library for building parliament diagrams in
 
 It's written in pure javascript with the aim to be minimal with zero dependencies while still offering various settings.
 
-Test it out here.
+[Test it out here](https://dimithrandir.github.io/parlia/).
 
 
 ## Installation
