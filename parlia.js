@@ -57,7 +57,8 @@
 
 
 	/*
-	Main function. Draw the parliament for given data in a given SVG element. Do all the calculations based on the SVG element dimensions and provided arguments.
+	Main function. Draw the parliament for given data in a given SVG element.
+	Do all the calculations based on the SVG element dimensions and provided arguments.
 	*/
 	function drawParliament(
 		svg,
