@@ -1,4 +1,5 @@
-# Parlia.js
+<p align="center"><img src="https://github.com/Dimithrandir/parlia/blob/master/logo.svg" alt="" width="128px" height="128px"/></p>
+<h1 align="center">Parlia</h1>
 
 Parlia is a browser-based javascript library for building parliament diagrams in SVG format.
 
@@ -26,21 +27,16 @@ let data = [[1, "red", "Party 1", 12], [2, "blue", "Party 2", 12]];
 Parlia.drawParliament(svg, data);
 ```
 
-[SVG image]
+<img src="https://github.com/Dimithrandir/parlia/blob/master/parliament-example.svg" alt=""/>
 
 The data has to be given as an array with items describing each party, either as other arrays, where each one has the following format: `[id, color, name, seats]`; or objects with properties `{id, color, name, seats}`; where `id` is unique number.  E.g.:
 
 ```
-...
-
 [... [7, "#f00", "My Party", 56], ...]
-...
 
 // or
 
-...
 [... {id: 7, color: "$f00", name: "My Party", seats: 56}, ...]
-...
 ```
 
 Alternatively, you can load from a CSV file:
