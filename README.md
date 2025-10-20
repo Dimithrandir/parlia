@@ -99,7 +99,7 @@ An object with two properties:
 
 `seatsDrawn` - Total number of seats drawn in the parliament.
 
-### .drawError()
+### drawError()
 
 Draw a caption with an error message over the parliament. Called when the arguments of drawParliament() don't allow all the seat to be drawn.
 
