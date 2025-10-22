@@ -138,10 +138,10 @@ input[type="radio"], input[type="file"] {
 
 output {
 	width: 20%;
-	background: #fff;
 	text-align: center;
 	cursor: help;
 	margin-right: 6px;
+	background: #fff;
 }
 
 button {
@@ -201,4 +201,12 @@ footer {
 footer > hr {
 	width: 50%;
 	color: #ccc;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
