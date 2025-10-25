@@ -38,6 +38,10 @@ var inputBackground = document.getElementById("inputBackground");
 
 inputBackground.value = background;
 
+var modeSwitch = document.getElementById("modeSwitch");
+
+modeSwitch.innerHTML = mode === "light" ? "☼" : "☀";
+
 // listeners
 
 window.addEventListener("resize", () => redraw());
@@ -152,6 +156,19 @@ svg.onclick = function() {
 		});
 		labelSeatsSelected.innerHTML = num;
 		labelSeatsPercent.innerHTML = Math.floor(100 * num / parseInt(labelSeats.innerHTML)) + "%";
+	}
+};
+
+modeSwitch.onclick = function() {
+	if (mode === "light") {
+		mode = "dark";
+		modeSwitch.innerHTML = "☀";
+		document.querySelector("html").style.setProperty('color-scheme', "dark");
+	}
+	else {
+		mode = "light";
+		modeSwitch.innerHTML = "☼";
+		document.querySelector("html").style.setProperty('color-scheme', "light");
 	}
 };
 

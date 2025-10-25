@@ -15,6 +15,12 @@ header > span {
 	margin-right: auto;
 }
 
+.mode-switch {
+	margin-right: 0;
+	font-size: x-large;
+	cursor: pointer;
+}
+
 .main-container {
     display: flex;
     justify-content: center;
