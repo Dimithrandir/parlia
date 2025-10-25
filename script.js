@@ -1,4 +1,4 @@
-
+var mode = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark" : "light";
 
 var data = [];
 
@@ -7,7 +7,8 @@ var rInner = Parlia.DEFAULTS.rInner;
 var rDenom = Parlia.DEFAULTS.rDenom;
 var sortField = Parlia.DEFAULTS.sortField;
 var sortOrder = Parlia.DEFAULTS.sortOrder;
-var background = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "#130f1d" : Parlia.DEFAULTS.background;
+var background = mode === "light" ? Parlia.DEFAULTS.background : "#130f1d";
+var defaultColors = mode === "light" ? ["#ff0000", "#0000ff"] : ["#ee3333", "#66aaaa"];
 
 
 // elements
@@ -216,7 +217,7 @@ function addNewParty(party = null) {
 		partyIndex++;
 	}
 
-	let newColor = party ? party.color : (partyIndex > 2) ? getRandomColor() : (partyIndex == 1) ? "#ff0000" : "#0000ff";  // red & blue at start
+	let newColor = party ? party.color : (partyIndex > 2) ? getRandomColor() : defaultColors[partyIndex-1];  // red & blue at start
 	let newName = party ? party.name : "Party " + partyIndex;
 	let newSeats = party? party.seats : 20;
 
