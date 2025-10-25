@@ -7,7 +7,7 @@ var rInner = Parlia.DEFAULTS.rInner;
 var rDenom = Parlia.DEFAULTS.rDenom;
 var sortField = Parlia.DEFAULTS.sortField;
 var sortOrder = Parlia.DEFAULTS.sortOrder;
-var background = Parlia.DEFAULTS.background;
+var background = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "#130f1d" : Parlia.DEFAULTS.background;
 
 
 // elements
@@ -34,6 +34,7 @@ var checkShadow = document.getElementById("checkShadow");
 
 var inputBackground = document.getElementById("inputBackground");
 
+inputBackground.value = background;
 
 // listeners
 

@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	background: #f2f2f2;
+	background: light-dark(#f2f2f2, Canvas);
 	font-family: sans-serif;
 }
 
@@ -96,7 +96,7 @@ input, output {
 	margin: 6px 0 0 6px;
 	box-sizing: border-box;
 
-	border: 1px solid #ccc;
+	border: 1px solid light-dark(#ccc, #777);
 	border-radius: 6px;
 }
 
@@ -141,7 +141,7 @@ output {
 	text-align: center;
 	cursor: help;
 	margin-right: 6px;
-	background: #fff;
+	background: Field;
 }
 
 button {
