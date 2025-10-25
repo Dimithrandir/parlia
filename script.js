@@ -1,4 +1,6 @@
 var mode = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark" : "light";
+// default background and the default first two parties colors
+var defaultColors = mode === "light" ? [Parlia.DEFAULTS.background, "#ff0000", "#0000ff"] : ["#130f1d", "#ee3333", "#66aaaa"];
 
 var data = [];
 
@@ -7,8 +9,7 @@ var rInner = Parlia.DEFAULTS.rInner;
 var rDenom = Parlia.DEFAULTS.rDenom;
 var sortField = Parlia.DEFAULTS.sortField;
 var sortOrder = Parlia.DEFAULTS.sortOrder;
-var background = mode === "light" ? Parlia.DEFAULTS.background : "#130f1d";
-var defaultColors = mode === "light" ? ["#ff0000", "#0000ff"] : ["#ee3333", "#66aaaa"];
+var background = defaultColors[0];
 
 
 // elements
@@ -122,7 +123,7 @@ document.getElementById("buttonDefaults").onclick = function() {
 	radioOrderAscending.checked = true;
 	sortField = sortOrder = 0;
 	checkBorder.checked = checkShadow.checked = false;
-	background = Parlia.DEFAULTS.background;
+	background = defaultColors[0];
 	inputBackground.value = background;
 
 	redraw(); 
@@ -217,7 +218,7 @@ function addNewParty(party = null) {
 		partyIndex++;
 	}
 
-	let newColor = party ? party.color : (partyIndex > 2) ? getRandomColor() : defaultColors[partyIndex-1];  // red & blue at start
+	let newColor = party ? party.color : (partyIndex > 2) ? getRandomColor() : defaultColors[partyIndex];  // red & blue at start
 	let newName = party ? party.name : "Party " + partyIndex;
 	let newSeats = party? party.seats : 20;
 
