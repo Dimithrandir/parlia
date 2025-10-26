@@ -1,0 +1,24 @@
+{
+  "name": "parlia",
+  "version": "0.1.1",
+  "description": "Create SVG parliament diagrams",
+  "keywords": [
+    "parliament",
+    "diagram",
+    "chart",
+    "svg",
+	"vanillajs",
+	"purejs"
+  ],
+  "homepage": "https://github.com/Dimithrandir/parlia#readme",
+  "bugs": {
+    "url": "https://github.com/Dimithrandir/parlia/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dimithrandir/parlia.git"
+  },
+  "license": "MIT",
+  "author": "Dimithrandir <mthrdts@gmail.com>",
+  "main": "parlia.js"
+}
