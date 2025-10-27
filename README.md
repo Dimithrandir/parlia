@@ -11,7 +11,7 @@ It's written in pure javascript with the aim to be minimal with zero dependencie
 
 Install from npm with `npm i parlia` or get `parlia.js` from this repo, put it in your project and include it in your page:
 
-```
+```html
 <script src="./parlia.js"></script>
 ```
 
@@ -19,7 +19,7 @@ Install from npm with `npm i parlia` or get `parlia.js` from this repo, put it i
 
 There are only two mandatory arguments you need to provide to the main method, a reference to a SVG element and the parties data.
 
-```
+```js
 let svg = document.getElementById("svg");
 let data = [[1, "red", "Party 1", 12], [2, "blue", "Party 2", 12]];
 
@@ -32,7 +32,7 @@ This would generate the following diagram:
 
 The data has to be given as an array with items describing each party, either as other arrays, where each one has the following format: `[id, color, name, seats]`; or objects with properties `{id, color, name, seats}`; where `id` is unique number, e.g.:
 
-```
+```js
 [... [7, "#f00", "My Party", 56], ...]
 
 // or
