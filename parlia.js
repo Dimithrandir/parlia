@@ -1,5 +1,5 @@
 // Parlia
-// 0.1.0
+// 0.1.2
 
 
 (function (root, factory) {
@@ -171,7 +171,7 @@
 
 		// don't try to draw anything if no rows
 		if (rows.length == 0) {
-			return [nSeats, 0];
+			return {seatsTotal: nSeats, seatsDrawn: 0};
 		}
 
 
