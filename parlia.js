@@ -1,5 +1,5 @@
 // Parlia
-// 0.1.2
+// 0.2.0
 
 
 (function (root, factory) {
@@ -36,7 +36,8 @@
 		border: true,
 		shadow: true,
 		background: "#f2f2f2",
-		padding: 12
+		padding: 12,
+		centralAngle: 180
 	};
 
 	// set of currently selected parties class names
@@ -70,11 +71,15 @@
 		border = DEFAULTS.border,
 		shadow = DEFAULTS.shadow,
 		background = DEFAULTS.background,
-		padding = DEFAULTS.padding
+		padding = DEFAULTS.padding,
+		centralAngle = DEFAULTS.centralAngle
 	) {
 
 		// parse data
 		let parties = parseData(data);
+
+		// central angle must be under 180°
+		centralAngle = toRadians(Math.min(centralAngle, 180));
 
 		// clear the SVG element
 		svg.innerHTML = "";
@@ -121,7 +126,7 @@
 		parlSemi.r1 = parlRect.width / rInner;  // inner radius
 		parlSemi.r2 = parlRect.width / 2.0;  // outer radius 
 		parlSemi.t = parlSemi.r2 - parlSemi.r1;  // thickness
-		parlSemi.area = Math.PI * (parlSemi.r2 - parlSemi.r1) * (parlSemi.r2 + parlSemi.r1) / 2.0;
+		parlSemi.area = centralAngle * (parlSemi.r2 - parlSemi.r1) * (parlSemi.r2 + parlSemi.r1) / 2.0;
 
 
 		// total number of seats in the parliament
@@ -153,7 +158,7 @@
 			// row radius (including the margin)
 			row.r = parlSemi.r1 + (seat.r + row.marginRad) * (2 * i - 1);
 			// row length (as 180° arc)
-			row.l = row.r * Math.PI;
+			row.l = row.r * centralAngle;
 			// angle of the arc with seat radius as cord
 			row.theta = Math.asin(seat.r / row.r);
 			// arc of the row covered by a single seat (same for every seat)
@@ -279,11 +284,11 @@
 			seatMatrix[i] = seatMatrix[i].filter((el) => el != -1);
 		}
 
-
 		// draw the rows
 		let seatCounter = 0;
+		let gamma = (Math.PI - centralAngle) / 2;
 		for (let i = 0; i < nRows; i++) {
-			for (let j = 0, alpha = rows[i].theta; j < rows[i].kSeats; j++, alpha += (2 * rows[i].theta + rows[i].beta)) {
+			for (let j = 0, alpha = gamma + rows[i].theta; j < rows[i].kSeats; j++, alpha += (2 * rows[i].theta + rows[i].beta)) {
 				seat.cx = parlRect.left + parlSemi.r2 - Math.cos(alpha) * rows[i].r;	// the adjacent cathetus
 				seat.cy = parlRect.top + parlRect.height - Math.sin(alpha) * rows[i].r;	// the opposite cathetus
 

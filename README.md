@@ -9,7 +9,7 @@ It's written in pure javascript with the aim to be minimal with zero dependencie
 
 ## Installation
 
-Get `parlia.js` from this repo, put it in your project and include it in your page:
+Install from npm with `npm i parlia` or get `parlia.js` from this repo, put it in your project and include it in your page:
 
 ```
 <script src="./parlia.js"></script>
@@ -90,6 +90,8 @@ Returns an object with the total number of seats in the parliament and the numbe
 `background` - Parliament background color. Default is `#f2f2f2`.
 
 `padding` - Padding between the edge of the SVG element and the parliament in pixels. Default is `12`.
+
+`centralAngle` - A number representing the central angle over which the parliament spans in degrees. Values over 180 have no effect. Default is `180`.
 
 #### Return value
 

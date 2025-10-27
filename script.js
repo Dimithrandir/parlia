@@ -7,6 +7,7 @@ var data = [];
 
 var rInner = Parlia.DEFAULTS.rInner;
 var rDenom = Parlia.DEFAULTS.rDenom;
+var centralAngle = Parlia.DEFAULTS.centralAngle;
 var sortField = Parlia.DEFAULTS.sortField;
 var sortOrder = Parlia.DEFAULTS.sortOrder;
 var background = defaultColors[0];
@@ -79,16 +80,23 @@ document.getElementById("buttonExportCsv").onclick = function() {
 
 
 sliderRadius.oninput = function () {
-	rInner= this.value / 10;
+	rInner = this.value / 10;
 	labelRadius.innerHTML = rInner;
 	redraw(); 
 };
 
 
 sliderRatio.oninput = function () {
-	rDenom= this.value / 10;
+	rDenom = this.value / 10;
 	labelRatio.innerHTML = rDenom;
 	redraw(); 
+};
+
+
+sliderAngle.oninput = function () {
+	centralAngle = this.value;
+	labelAngle.innerHTML = centralAngle + "°";
+	redraw();
 };
 
 
@@ -119,10 +127,13 @@ inputBackground.oninput = function() {
 document.getElementById("buttonDefaults").onclick = function() {
 	rInner = Parlia.DEFAULTS.rInner;
 	rDenom = Parlia.DEFAULTS.rDenom;
+	centralAngle = Parlia.DEFAULTS.centralAngle;
 	sliderRadius.value = Parlia.DEFAULTS.rInner * 10;
 	sliderRatio.value = Parlia.DEFAULTS.rDenom * 10;
+	sliderAngle.value = Parlia.DEFAULTS.centralAngle;
 	labelRadius.innerHTML = rInner;
 	labelRatio.innerHTML = rDenom;
+	labelAngle.innerHTML = centralAngle + "°";
 	radioSortDefault.checked = true;
 	radioOrderAscending.checked = true;
 	sortField = sortOrder = 0;
@@ -287,7 +298,7 @@ function addNewParty(party = null) {
 // draw the parliament and update elements
 function redraw() {
 
-	let result = Parlia.drawParliament(svg, data, rInner, rDenom, sortField, sortOrder, checkBorder.checked, checkShadow.checked, background); 
+	let result = Parlia.drawParliament(svg, data, rInner, rDenom, sortField, sortOrder, checkBorder.checked, checkShadow.checked, background, undefined, centralAngle);
 
 	// status label update
 	let svgRect = svg.getBoundingClientRect();
