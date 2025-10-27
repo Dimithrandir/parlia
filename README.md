@@ -37,7 +37,7 @@ The data has to be given as an array with items describing each party, either as
 
 // or
 
-[... {id: 7, color: "$f00", name: "My Party", seats: 56}, ...]
+[... {id: 7, color: "#f00", name: "My Party", seats: 56}, ...]
 ```
 
 Alternatively, you can load from a CSV file:
