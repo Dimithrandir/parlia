@@ -1,5 +1,5 @@
 // Parlia
-// 0.2.0
+// 0.2.2
 
 
 (function (root, factory) {
@@ -260,20 +260,20 @@
 
 		
 		// tag the seats
-		let dataIndex = 0;
-		let dataCounter = 0;
+		let partyIndex = 0;
+		let seatCounter = 0;
 		// zigzag the seatMatrix vertically and tag the valid seats
 		for (let j = 0; j < topRowSeats; j++) {
 			for (let i = (j % 2 == 0) ? nRows - 1 : 0; i >= 0 && i < nRows; (j % 2 == 0) ? i-- : i++) {
 				// if valid seat
 				if (seatMatrix[i][j] == 0) {
 					// go to the next party
-					if (dataCounter >= parties[dataIndex].seats) {
-						dataIndex++;
-						dataCounter = 0;
+					if (seatCounter >= parties[partyIndex].seats) {
+						partyIndex++;
+						seatCounter = 0;
 					}
-					seatMatrix[i][j] = dataIndex;
-					dataCounter++;
+					seatMatrix[i][j] = partyIndex;
+					seatCounter++;
 				}
 			}
 		}
@@ -285,7 +285,7 @@
 		}
 
 		// draw the rows
-		let seatCounter = 0;
+		seatCounter = 0;
 		let gamma = (Math.PI - centralAngle) / 2;
 		for (let i = 0; i < nRows; i++) {
 			for (let j = 0, alpha = gamma + rows[i].theta; j < rows[i].kSeats; j++, alpha += (2 * rows[i].theta + rows[i].beta)) {
