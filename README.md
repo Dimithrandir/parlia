@@ -91,7 +91,7 @@ Returns an object with the total number of seats in the parliament and the numbe
 
 `padding` - Padding between the edge of the SVG element and the parliament in pixels. Default is `12`.
 
-`centralAngle` - A number representing the central angle over which the parliament spans in degrees. Values over 180 have no effect. Default is `180`.
+`centralAngle` - A number representing the central angle over which the parliament spans in degrees. Only values between 1 and 180 have effect. Default is `180`.
 
 #### Return value
 

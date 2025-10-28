@@ -78,8 +78,8 @@
 		// parse data
 		let parties = parseData(data);
 
-		// central angle must be under 180°
-		centralAngle = toRadians(Math.min(centralAngle, 180));
+		// central angle must be between 1 and 180 degrees
+		centralAngle = toRadians(centralAngle < 1 ? 1 : centralAngle > 180 ? 180 : centralAngle);
 
 		// clear the SVG element
 		svg.innerHTML = "";
@@ -174,8 +174,9 @@
 		}
 
 
-		// don't try to draw anything if no rows
-		if (rows.length == 0) {
+		// don't try to draw anything if no rows or no seats in some row
+		if (rows.length == 0 || rows.some((row) => row.kSeats < 1)) {
+			drawError(svg, "CAN'T FIT ALL SEATS", "Parliament options invalid");
 			return {seatsTotal: nSeats, seatsDrawn: 0};
 		}
 
