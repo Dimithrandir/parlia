@@ -1,6 +1,6 @@
 <img src="./logo.svg" alt="logo" width="128px" height="128px"/>
 
-Parlia is a browser-based javascript library for building parliament diagrams in SVG format.
+[Parlia](https://www.npmjs.com/package/parlia) is a browser-based javascript library for building parliament diagrams in SVG format.
 
 It's written in pure javascript with the aim to be minimal with zero dependencies while still offering various settings.
 
