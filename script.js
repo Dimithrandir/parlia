@@ -1,6 +1,6 @@
 var mode = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark" : "light";
-// default background and the default first two parties colors
-var defaultColors = mode === "light" ? [Parlia.DEFAULTS.background, "#ff0000", "#0000ff"] : ["#130f1d", "#ee3333", "#66aaaa"];
+// default background/foreground and the default first two parties colors
+var defaultColors = mode === "light" ? [{background: Parlia.DEFAULTS.background, foreground: Parlia.DEFAULTS.foreground}, "#ff0000", "#0000ff"] : [{background: "#130f1d", foreground: "white"}, "#ee3333", "#66aaaa"];
 
 var data = [];
 
@@ -10,7 +10,9 @@ var rDenom = Parlia.DEFAULTS.rDenom;
 var centralAngle = Parlia.DEFAULTS.centralAngle;
 var sortField = Parlia.DEFAULTS.sortField;
 var sortOrder = Parlia.DEFAULTS.sortOrder;
-var background = defaultColors[0];
+var background = defaultColors[0].background;
+var foreground = defaultColors[0].foreground;
+var countTextRatio = Parlia.DEFAULTS.countTextRatio;
 
 
 // elements
@@ -32,12 +34,22 @@ var labelRadius = document.getElementById("labelRadius");
 var sliderRatio = document.getElementById("sliderRatio");
 var labelRatio = document.getElementById("labelRatio");
 
+var sliderAngle = document.getElementById("sliderAngle");
+var labelAngle = document.getElementById("labelAngle");
+
+var sliderCount = document.getElementById("sliderCount");
+var labelCount = document.getElementById("labelCount");
+
 var checkBorder = document.getElementById("checkBorder");
 var checkShadow = document.getElementById("checkShadow");
 
 var inputBackground = document.getElementById("inputBackground");
 
 inputBackground.value = background;
+
+var inputForeground = document.getElementById("inputForeground");
+
+inputForeground.value = foreground;
 
 var modeSwitch = document.getElementById("modeSwitch");
 
@@ -100,6 +112,13 @@ sliderAngle.oninput = function () {
 };
 
 
+sliderCount.oninput = function () {
+	countTextRatio = this.value / 100;
+	labelCount.innerHTML = countTextRatio;
+	redraw();
+};
+
+
 document.getElementById("radioSort").onchange = function(event) {
 	sortField = parseInt(event.target.value);
 	redraw(); 
@@ -123,23 +142,36 @@ inputBackground.oninput = function() {
 	svg.getElementsByTagName("rect")[0].setAttribute("fill", background);
 };
 
+inputForeground.oninput = function() {
+	foreground = this.value;
+	let textElements = svg.getElementsByTagName("text");
+	if (textElements.length) {
+		textElements[0].setAttribute("fill", foreground);
+	}
+};
+
 
 document.getElementById("buttonDefaults").onclick = function() {
 	rInner = Parlia.DEFAULTS.rInner;
 	rDenom = Parlia.DEFAULTS.rDenom;
 	centralAngle = Parlia.DEFAULTS.centralAngle;
-	sliderRadius.value = Parlia.DEFAULTS.rInner * 10;
-	sliderRatio.value = Parlia.DEFAULTS.rDenom * 10;
-	sliderAngle.value = Parlia.DEFAULTS.centralAngle;
+	countTextRatio = Parlia.DEFAULTS.countTextRatio;
+	sliderRadius.value = rInner * 10;
+	sliderRatio.value = rDenom * 10;
+	sliderAngle.value = centralAngle;
+	sliderCount.value = countTextRatio * 100;
 	labelRadius.innerHTML = rInner;
 	labelRatio.innerHTML = rDenom;
 	labelAngle.innerHTML = centralAngle + "°";
+	labelCount.innerHTML = 0;
 	radioSortDefault.checked = true;
 	radioOrderAscending.checked = true;
 	sortField = sortOrder = 0;
 	checkBorder.checked = checkShadow.checked = false;
-	background = defaultColors[0];
+	background = defaultColors[0].background;
 	inputBackground.value = background;
+	foreground = defaultColors[0].foreground;
+	inputForeground.value = foreground;
 
 	redraw(); 
 };
@@ -298,7 +330,7 @@ function addNewParty(party = null) {
 // draw the parliament and update elements
 function redraw() {
 
-	let result = Parlia.drawParliament(svg, data, rInner, rDenom, sortField, sortOrder, checkBorder.checked, checkShadow.checked, background, undefined, centralAngle);
+	let result = Parlia.drawParliament(svg, data, rInner, rDenom, sortField, sortOrder, checkBorder.checked, checkShadow.checked, background, undefined, centralAngle, countTextRatio, foreground);
 
 	// status label update
 	let svgRect = svg.getBoundingClientRect();

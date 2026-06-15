@@ -40,18 +40,23 @@
 			<div class="settings-container">
 				<label>Thickness:</label>
 				<div class="form-row">
-					<input id="sliderRadius" type="range" min="40" max="100" value="50" class="slider"/>
+					<input id="sliderRadius" type="range" autocomplete="off" min="40" max="100" value="50" class="slider"/>
 					<output id="labelRadius" title="Adjust the thickness of the parliament by changing the ratio of the parliament width to parliament inner radius. A value of 5 means the inner radius of the parliament is 1/5 of its width. Bigger value means bigger parliament.">5</output>
 				</div>
 				<label>Seat size:</label>
 				<div class="form-row">
-					<input id="sliderRatio" type="range" min="20" max="40" value="25" class="slider"/>
+					<input id="sliderRatio" type="range" autocomplete="off" min="20" max="40" value="25" class="slider"/>
 					<output id="labelRatio" title="Adjust the seat size by changing the ratio of the side of a square with area equal to each seat's share of the parliament, to the radius of the actual seat. A value of 2.5 means the ratio of side to radius is 1/2.5. Smaller value means bigger seats.">2.5</output>
 				</div>
 				<label>Central angle:</label>
 				<div class="form-row">
-					<input id="sliderAngle" type="range" min="90" max="180" value="180" class="slider"/>
+					<input id="sliderAngle" type="range" autocomplete="off" min="90" max="180" value="180" class="slider"/>
 					<output id="labelAngle" title="Adjust the central angle of the parliament.">180°</output>
+				</div>
+				<label>Count text size:</label>
+				<div class="form-row">
+					<input id="sliderCount" type="range" autocomplete="off" min="0" max="100" value="0" class="slider"/>
+					<output id="labelCount" title="Adjust the ratio between the count text size and the inner radius of the parliament. A value of 0 mean no count text is displayed (default).">0</output>
 				</div>
 				<label>Order:</label>
 				<div class="form-row">
@@ -90,6 +95,10 @@
 				<div class="form-row">
 					<label>Background color:</label>
 					<input type="color" id="inputBackground" class="input-background" value="#dddddd"/>
+				</div>
+				<div class="form-row">
+					<label>Foreground color:</label>
+					<input type="color" id="inputForeground" class="input-background" value="#000000"/>
 				</div>
 				<button id="buttonDefaults">Defaults</button>
 				<button id="buttonDownload">Download as svg</button>
