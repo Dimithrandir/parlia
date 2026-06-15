@@ -37,7 +37,10 @@
 		shadow: true,
 		background: "#f2f2f2",
 		padding: 12,
-		centralAngle: 180
+		centralAngle: 180,
+		countText: true,
+		countTextRatio: 0.5,
+		countTextColor: "black"
 	};
 
 	// set of currently selected parties class names
@@ -72,7 +75,10 @@
 		shadow = DEFAULTS.shadow,
 		background = DEFAULTS.background,
 		padding = DEFAULTS.padding,
-		centralAngle = DEFAULTS.centralAngle
+		centralAngle = DEFAULTS.centralAngle,
+		countText = DEFAULTS.countText,
+		countTextRatio = DEFAULTS.countTextRatio,
+		countTextColor = DEFAULTS.countTextColor
 	) {
 
 		// parse data
@@ -302,6 +308,12 @@
 		}
 
 
+		// draw the count label
+		if (countText) {
+			drawCount(parlRect, seatCounter, svg, countTextRatio * parlSemi.r1, countTextColor);
+		}
+
+
 		// draw the background rectangle
 		drawRect(backRect, svg, background);
 
@@ -366,6 +378,22 @@
 			// add the shadow as top sibling (behind all the seats)
 			svg.insertBefore(shadow, svg.firstChild);
 		}
+	}
+
+	function drawCount(parlRect, count, svg, size, color) {
+		let svgRect = svg.getBoundingClientRect();
+
+		let text = document.createElementNS(SVGNS, "text");
+		text.setAttribute("x", svgRect.width / 2);
+		text.setAttribute("y", parlRect.top + parlRect.height);
+		text.setAttribute("fill", color);
+		text.setAttribute("font-size", size);
+		text.style.textAnchor = "middle";
+		text.style.fontFamily = "san-serif";
+		text.style.fontWeight = "bold";
+		text.innerHTML = count;
+
+		svg.appendChild(text);
 	}
 
 	function drawError(svg, title, subtitle) {
