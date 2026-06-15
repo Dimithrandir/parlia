@@ -38,9 +38,8 @@
 		background: "#f2f2f2",
 		padding: 12,
 		centralAngle: 180,
-		countText: true,
-		countTextRatio: 0.5,
-		countTextColor: "black"
+		countTextRatio: 0.0,
+		foreground: "black"
 	};
 
 	// set of currently selected parties class names
@@ -76,9 +75,8 @@
 		background = DEFAULTS.background,
 		padding = DEFAULTS.padding,
 		centralAngle = DEFAULTS.centralAngle,
-		countText = DEFAULTS.countText,
 		countTextRatio = DEFAULTS.countTextRatio,
-		countTextColor = DEFAULTS.countTextColor
+		foreground = DEFAULTS.foreground
 	) {
 
 		// parse data
@@ -309,8 +307,8 @@
 
 
 		// draw the count label
-		if (countText) {
-			drawCount(parlRect, seatCounter, svg, countTextRatio * parlSemi.r1, countTextColor);
+		if (countTextRatio) {
+			drawCount(parlRect, seatCounter, svg, countTextRatio * parlSemi.r1, foreground);
 		}
 
 
