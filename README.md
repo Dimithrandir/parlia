@@ -52,7 +52,7 @@ id,color,name,seats
 
 ### Public methods:
 
-- ### drawParliament()
+- ### `drawParliament()`
 
 Main function, does all the calculations for the given arguments and draws the parliament in the given SVG DOM object.
 
@@ -75,23 +75,29 @@ Returns an object with the total number of seats in the parliament and the numbe
 
 	or arrays with four items, each taking the given properties in the given order.
 
-`rInner` - A number representing the inner radius of the parliament as a fraction of the total width of the parliament, or the "thickness" of the parliament. E.g. a value of 5 means the inner radius is 1/5 of the parliament width. Defaults to `5.0`.
+`options` - Parameter object with all the parliament options:
 
-`rDenom` - A number representing the denominator in the fraction that is the ratio of the side of a square with area equal to each seat's share of the parliament, to the radius of the actual seat. A value of 2.5 means the ratio of side to radius is 1/2.5. Defaults to `2.5`.
+  - `rInner` - A number representing the inner radius of the parliament as a fraction of the total width of the parliament, or the "thickness" of the parliament. E.g. a value of 5 means the inner radius is 1/5 of the parliament width. Defaults to `5.0`.
 
-`sortField` - A number determining which party property will the parties be sort by in the parliament. `0` for `id`, `1` for `name`, `3` for `seats`. Default is `0`.
+  - `rDenom` - A number representing the denominator in the fraction that is the ratio of the side of a square with area equal to each seat's share of the parliament, to the radius of the actual seat. A value of 2.5 means the ratio of side to radius is 1/2.5. Defaults to `2.5`.
 
-`sortOrder` - A number determining the sort order. `0` for ascending, `1` for descending, `2` for alternating. Default is `0`.
+  - `sortField` - A number determining which party property will the parties be sort by in the parliament. `0` for `id`, `1` for `name`, `3` for `seats`. Default is `0`.
 
-`border` - Draw a border around each seat. Default is `true`.
+  - `sortOrder` - A number determining the sort order. `0` for ascending, `1` for descending, `2` for alternating. Default is `0`.
 
-`shadow` - Draw a shadow under each seat. Default is `true`.
+  - `border` - Draw a border around each seat. Default is `true`.
 
-`background` - Parliament background color. Default is `#f2f2f2`.
+  - `shadow` - Draw a shadow under each seat. Default is `true`.
 
-`padding` - Padding between the edge of the SVG element and the parliament in pixels. Default is `12`.
+  - `background` - Parliament background color. Default is `#f2f2f2`.
 
-`centralAngle` - A number representing the central angle over which the parliament spans in degrees. Only values between 1 and 180 have effect. Default is `180`.
+  - `padding` - Padding between the edge of the SVG element and the parliament in pixels. Default is `12`.
+
+  - `centralAngle` - A number representing the central angle over which the parliament spans in degrees. Only values between 1 and 180 have effect. Default is `180`.
+
+  - `countTextRatio` - Ratio of the text size of the label displaying the total number of seats to the inner radius of the parliament. Default is `0.0`, meaning no text is displayed.
+
+  - `foreground` - Text color of the label displaying the total number of seats in the parliament. Default is `#101010`.
 
 #### Return value
 
@@ -101,7 +107,7 @@ An object with two properties:
 
 `seatsDrawn` - Total number of seats drawn in the parliament.
 
-- ### drawError()
+- ### `drawError()`
 
 Draw a caption with an error message over the parliament. Called when the arguments of drawParliament() don't allow all the seat to be drawn.
 
@@ -113,7 +119,7 @@ Draw a caption with an error message over the parliament. Called when the argume
 
 `subtitle` - Subtitle of the caption. 
 
-- ### downloadParliament()
+- ### `downloadParliament()`
 
 Download the generated SVG.
 
@@ -121,7 +127,7 @@ Download the generated SVG.
 
 `svg` - Reference to the SVG DOM object where the parliament is drawn.
 
-- ### parseFromCsv()
+- ### `parseFromCsv()`
 
 Reads from a CSV file and parses to the preferred data format. Throws exceptions if the data is not in the correct format.
 
@@ -129,7 +135,7 @@ Reads from a CSV file and parses to the preferred data format. Throws exceptions
 
 `file` - A File object.
 
-- ### parseToCsv()
+- ### `parseToCsv()`
 
 Write the parties to a CSV file.
 
@@ -139,6 +145,6 @@ Write the parties to a CSV file.
 
 ### Public properties:
 
-- ### selectedParties
+- ### `selectedParties`
 
 A Set of class names for the parties that are currently selected. Selected parties' seats have full opacity. Empty list means everything is selected (default).
