@@ -330,7 +330,21 @@ function addNewParty(party = null) {
 // draw the parliament and update elements
 function redraw() {
 
-	let result = Parlia.drawParliament(svg, data, rInner, rDenom, sortField, sortOrder, checkBorder.checked, checkShadow.checked, background, undefined, centralAngle, countTextRatio, foreground);
+	let result = Parlia.drawParliament(
+		svg,
+		data,
+		{
+			rInner: rInner,
+			rDenom: rDenom,
+			sortField: sortField,
+			sortOrder: sortOrder,
+			border: checkBorder.checked,
+			shadow: checkShadow.checked,
+			background: background,
+			centralAngle: centralAngle,
+			countTextRatio: countTextRatio,
+			foreground: foreground
+		});
 
 	// status label update
 	let svgRect = svg.getBoundingClientRect();

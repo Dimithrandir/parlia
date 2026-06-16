@@ -39,7 +39,7 @@
 		padding: 12,
 		centralAngle: 180,
 		countTextRatio: 0.0,
-		foreground: "black"
+		foreground: "#101010"
 	};
 
 	// set of currently selected parties class names
@@ -63,27 +63,23 @@
 	Main function. Draw the parliament for given data in a given SVG element.
 	Do all the calculations based on the SVG element dimensions and provided arguments.
 	*/
-	function drawParliament(
-		svg,
-		data,
-		rInner = DEFAULTS.rInner,
-		rDenom = DEFAULTS.rDenom,
-		sortField = DEFAULTS.sortField,
-		sortOrder = DEFAULTS.sortOrder,
-		border = DEFAULTS.border,
-		shadow = DEFAULTS.shadow,
-		background = DEFAULTS.background,
-		padding = DEFAULTS.padding,
-		centralAngle = DEFAULTS.centralAngle,
-		countTextRatio = DEFAULTS.countTextRatio,
-		foreground = DEFAULTS.foreground
-	) {
+	function drawParliament(svg, data, options) {
+
+		// apply default values for missing options
+		if (!options) {
+			options = DEFAULTS;
+		}
+		else {
+			for (let key in DEFAULTS) {
+				options[key] = (typeof options[key] !== "undefined" && typeof options[key] !== "null") ? options[key] : DEFAULTS[key];
+			}
+		}
 
 		// parse data
 		let parties = parseData(data);
 
 		// central angle must be between 1 and 180 degrees
-		centralAngle = toRadians(centralAngle < 1 ? 1 : centralAngle > 180 ? 180 : centralAngle);
+		let centralAngle = toRadians(options.centralAngle < 1 ? 1 : options.centralAngle > 180 ? 180 : options.centralAngle);
 
 		// clear the SVG element
 		svg.innerHTML = "";
@@ -118,8 +114,8 @@
 			parlRect.width = svgRect.width;
 			parlRect.height = svgRect.width / 2.0;
 		}
-		parlRect.width -= 2 * padding;
-		parlRect.height -= padding;
+		parlRect.width -= 2 * options.padding;
+		parlRect.height -= options.padding;
 		parlRect.left = (svgRect.width - parlRect.width) / 2.0;
 		parlRect.top = (svgRect.height - parlRect.height) / 2.0;
 		parlRect.area = parlRect.width * parlRect.height;
@@ -127,7 +123,7 @@
 
 		// the parliament takes a shape of a semicircle
 		let parlSemi = {};
-		parlSemi.r1 = parlRect.width / rInner;  // inner radius
+		parlSemi.r1 = parlRect.width / options.rInner;  // inner radius
 		parlSemi.r2 = parlRect.width / 2.0;  // outer radius 
 		parlSemi.t = parlSemi.r2 - parlSemi.r1;  // thickness
 		parlSemi.area = centralAngle * (parlSemi.r2 - parlSemi.r1) * (parlSemi.r2 + parlSemi.r1) / 2.0;
@@ -146,7 +142,7 @@
 
 		// each seat is represented as a circle with radius that's a fraction of the side of the hypothetical square
 		let seat = {};
-		seat.r = square.a / rDenom;
+		seat.r = square.a / options.rDenom;
 
 
 		// parliament is consisted of multiple rows of seats
@@ -227,7 +223,7 @@
 
 
 		// sort the parties by given field
-		switch (sortField) {
+		switch (options.sortField) {
 			// party id
 			case 0:
 				parties = parties.sort((a, b) => a.id - b.id);	
@@ -246,14 +242,14 @@
 
 
 		// order the parties in given mode
-		switch (sortOrder) {
+		switch (options.sortOrder) {
 			// descending
 			case 1:
 				parties.reverse();
 				break;
 			// alternating
 			case 2:
-				if (sortField == 1) {
+				if (options.sortField == 1) {
 					parties.reverse();
 				} 
 				parties = parties.filter((item, i) => i % 2 == 0).concat(parties.filter((item, i) => i % 2 != 0).reverse());
@@ -299,7 +295,7 @@
 
 				let party = parties[seatMatrix[i][j]];
 
-				drawSeat(seat.cx, seat.cy, seat.r, party.color, party.name, party.id, svg, border, shadow);
+				drawSeat(seat.cx, seat.cy, seat.r, party.color, party.name, party.id, svg, options.border, options.shadow);
 				// count the actual drawn seats, to see if they all fit
 				seatCounter++;
 			}
@@ -307,13 +303,13 @@
 
 
 		// draw the count label
-		if (countTextRatio) {
-			drawCount(parlRect, seatCounter, svg, countTextRatio * parlSemi.r1, foreground);
+		if (options.countTextRatio) {
+			drawCount(parlRect, seatCounter, svg, options.countTextRatio * parlSemi.r1, options.foreground);
 		}
 
 
 		// draw the background rectangle
-		drawRect(backRect, svg, background);
+		drawRect(backRect, svg, options.background);
 
 
 		// draw error caption if can't fit all the seats
